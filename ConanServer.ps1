@@ -1,5 +1,7 @@
-# Conan Exiles Dedicated Server installation script for Windows Server Core
-# Written by TripodGG
+# Name: Conan Exiles Dedicated Server setup
+# Author: TripodGG
+# Purpose: Download and install all necessary files to host a Conan Exiles Dedicated Server
+# License: MIT License, Copyright (c) 2024 TripodGG
 
 # Check the version of Windows Server to confirm it is a supported version
 $osVersion = (Get-CimInstance Win32_OperatingSystem).Version
