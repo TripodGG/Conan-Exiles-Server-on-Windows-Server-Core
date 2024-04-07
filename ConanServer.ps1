@@ -579,7 +579,7 @@ else {
 }
 
 # Set the file path for the Engine.ini file
-$engineFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\WindowsServer\Engine.ini"
+$engineFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\Engine.ini"
 
 # Set the content for the Engine.ini file
 $content = @"
@@ -603,7 +603,7 @@ Set-Content -Path $engineFilePath -Value $content
 Write-Host "Engine Configuration saved to $engineFilePath"
 
 # Set the file path for the Game.ini file
-$gameFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\WindowsServer\Game.ini"
+$gameFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\Game.ini"
 
 # Set the content for the Game.ini file
 $content = @"
@@ -620,7 +620,7 @@ Set-Content -Path $gameFilePath -Value $content
 Write-Host "Game Configuration saved to $gameFilePath"
 
 # Set the file path for the ServerSettings.ini file
-$serverSettingsFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\WindowsServer\ServerSettings.ini"
+$serverSettingsFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\ServerSettings.ini"
 
 # Set the content for the ServerSettings.ini file
 $content = @"
