@@ -4,6 +4,11 @@
 # License: MIT License, Copyright (c) 2024 TripodGG
 
 
+
+
+# Clear the screen
+Clear-Host
+
 ########################
 # Checks and Functions #
 ########################
@@ -13,11 +18,11 @@ $osVersion = (Get-CimInstance Win32_OperatingSystem).Version
 
 # Check if the OS is Windows Server 2016/2019
 if ($osVersion -match '10\.0\.(14393|17763)') {
-    Write-Host "Windows Server 2016/2019 detected." -ForegroundColor Cyan
+    Write-Host "Windows Server 2016/2019 detected." -ForegroundColor Yellow
 }
 # Check if the OS Windows Server 2022
 elseif ($osVersion -match '10\.0\.(20348)') {
-    Write-Host "Windows Server 2022 detected." -ForegroundColor Cyan
+    Write-Host "Windows Server 2022 detected." -ForegroundColor Yellow
 }
 else {
     Write-Host "Unsupported Windows Server version. Please use a supported version of Windows Server." -ForegroundColor Red
@@ -93,6 +98,7 @@ function Get-ValidDirectory {
 
     do {
         # Prompt user for the installation directory
+		Start-Sleep -Seconds 5
         $installPath = Read-Host "Enter the directory where you would like to install the dedicated server. (i.e. 'C:\ConanServer')"
 
         # Check if the path is valid
@@ -327,12 +333,7 @@ function Check-VCRedist {
 function Install-VCRedist {
     try {
         Write-Host "Installing Visual C++ Redistributable using Chocolatey..."  -ForegroundColor Cyan
-        choco install vcredist2005 -y
-		choco install vcredist2008 -y
-		choco install vcredist2010 -y
-		choco install vcredist2012 -y
-		choco install vcredist2013 -y
-		choco install vcredist140 -y
+        choco install vcredist2005 vcredist2008 vcredist2010 vcredist2012 vcredist2013 vcredist140 -y
         Write-Host "Visual C++ Redistributable installed successfully." -ForegroundColor Green
     } catch {
         # Handle unexpected error during installation
@@ -942,3 +943,5 @@ if ($userChoice -eq 'Y' -or $userChoice -eq 'Yes') {
 } else {
     Write-Host "The Conan server will not run until a reboot is completed. Please reboot at your earliest convenience." -ForegroundColor Red
 }
+
+Clear-Host
