@@ -399,6 +399,20 @@ if ($installedUpdate) {
 # Check for and install any additional updates
 Get-WindowsUpdate -Install -AcceptAll
 
+# Check if .NET Framework 3.5 is installed
+$dotNet35 = Get-WindowsFeature -Name "NET-Framework-Features" | Where-Object {$_.Name -eq "NET-Framework-Core"}
+
+if ($dotNet35.Installed) {
+    Write-Host ".NET Framework 3.5 is already installed." -ForegroundColor Green
+} else {
+    # Install .NET Framework 3.5
+    Write-Host "Installing .NET Framework 3.5..." -ForegroundColor Cyan
+
+    Install-WindowsFeature -Name NET-Framework-Core -IncludeAllSubFeature -Restart
+
+    Write-Host ".NET Framework 3.5 has been installed." -ForegroundColor Green
+}
+
 # Function to check if a reboot is pending due to updates
 function Check-And-RebootIfNeeded {
     $pendingReboot = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\RebootRequired' -ErrorAction SilentlyContinue).RebootRequired
@@ -460,6 +474,10 @@ Add-WindowsCapability -Online -Name DirectX.Configuration.Database~~~~0.0.1.0
 
 #Remove-Item $exePath
 #Write-Host "Installed!" -ForegroundColor Green
+
+# Download the DirectX End-User Runtimes (June 2010) offline installer
+# Invoke-WebRequest -Uri https://download.microsoft.com/download/8/4/A/84A35BF1-DAFE-4AE8-82AF-AD2AE20B6B14/directx_Jun2010_redist.exe -UseBasicParsing -OutFile ~\Downloads\directx_june2010_redist.exe
+
 
 # Check if Scoop is installed
 if (-not (CommandExists 'scoop')) {
