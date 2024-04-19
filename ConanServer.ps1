@@ -822,7 +822,7 @@ else {
 #######################
 
 # Set the file path for the Engine.ini file
-$engineFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\Engine.ini"
+$engineFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\"
 
 # Set the content for the Engine.ini file
 $engineContent = @"
@@ -841,12 +841,12 @@ NetServerMaxTickRate=30
 "@
 
 # Write the content to the file
-$engineContent | Out-File -FilePath $engineFilePath -Encoding ASCII -Append
+$engineContent | Out-File $engineFilePath\Engine.ini 
 
 Write-Host "Engine Configuration saved to $engineFilePath" -ForegroundColor Cyan
 
 # Set the file path for the Game.ini file
-$gameFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\Game.ini"
+$gameFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\"
 
 # Set the content for the Game.ini file
 $gameContent = @"
@@ -858,12 +858,12 @@ RconPort=$rconPort
 "@
 
 # Write the content to the file
-$gameContent | Out-File -FilePath $gameFilePath -Encoding ASCII -Append
+$gameContent | Out-File $gameFilePath\Game.ini 
 
 Write-Host "Game Configuration saved to $gameFilePath" -ForegroundColor Cyan
 
 # Set the file path for the ServerSettings.ini file
-$serverSettingsFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\ServerSettings.ini"
+$serverSettingsFilePath = Join-Path -Path $installDirectory -ChildPath "ConanSandbox\Saved\Config\Windows\"
 
 # Set the content for the ServerSettings.ini file
 $serverSettingsContent = @"
@@ -878,7 +878,7 @@ IsBattlEyeEnabled=$isBattlEyeEnabled
 "@
 
 # Write the content to the file
-$serverSettingsContent | Out-File -FilePath $serverSettingsFilePath -Encoding ASCII -Append
+$serverSettingsContent | Out-File $serverSettingsFilePath\ServerSettings.ini 
 
 Write-Host "Server Settings Configuration saved to $serverSettingsFilePath" -ForegroundColor Cyan
 
@@ -961,5 +961,7 @@ if ($userChoice -eq 'Y' -or $userChoice -eq 'Yes') {
 } else {
     Write-Host "The Conan server will not run until a reboot is completed. Please reboot at your earliest convenience." -ForegroundColor Red
 }
+
+Start-Sleep 10
 
 Clear-Host

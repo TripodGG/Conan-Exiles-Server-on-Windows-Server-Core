@@ -1,5 +1,5 @@
 # Conan Exiles Dedicated Server update script for Windows Server Core
-# Written by TripodGG
+# Author: TripodGG
 # Purpose: Download and install all necessary files to update a hosted Conan Exiles Dedicated Server
 # License: MIT License, Copyright (c) 2024 TripodGG
 
