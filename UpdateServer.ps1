@@ -3,6 +3,9 @@
 # Purpose: Download and install all necessary files to update a hosted Conan Exiles Dedicated Server
 # License: MIT License, Copyright (c) 2024 TripodGG
 
+
+
+
 $attempts = 0
 
 # Set the path for the error log
